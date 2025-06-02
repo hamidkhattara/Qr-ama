@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMA Foundation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Amiri&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tajawal', 'Segoe UI', sans-serif;    
+      background-color: #f5f5f5;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 10px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 420px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      padding: 25px 20px;
+      text-align: center;
+      width: 95%;
+      margin: 10px auto;
+      border: 1px solid #e1e1e1;
+    }
+
+    .logo {
+      width: 200px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    h1 {
+      font-family: 'Tajawal', 'Cairo', sans-serif;
+      color: #1a73e8;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+      font-weight: 500;
+    }  
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 14px 10px;
+      border-radius: 12px;
+      color: white;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      min-height: 70px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn i {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    /* Original button colors */
+    .maps    { background: linear-gradient(145deg, #34a853, #2d8e47); }
+    .facebook { background: linear-gradient(145deg, #1877f2, #166fe5); }
+    .instagram { background: linear-gradient(145deg, #e1306c, #c13584); }
+    .tiktok   { background: linear-gradient(145deg, #000000, #333333); }
+    .phone    { background: linear-gradient(145deg, #25d366, #128c7e); }
+    .whatsapp { background: linear-gradient(145deg, #128c7e, #075e54); }
+    .linkedin { background: linear-gradient(145deg, #0077b5, #004471); }
+    .email    { background: linear-gradient(145deg, #ff6f00, #e65100); }
+
+    /* Call options modal */
+    .call-options,
+    .whatsapp-options {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .call-options-content,
+    .whatsapp-options-content {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .call-option-btn,
+    .whatsapp-option-btn,
+    .close-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(145deg, #4285f4, #1a73e8);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .call-option-btn:hover,
+    .whatsapp-option-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .close-btn {
+      background: #ea4335;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 400px) {
+      .container {
+        padding: 20px 15px;
+        width: 92%;
+      }
+      
+      .logo {
+        width: 160px;
+      }
+      
+      h1 {
+        font-size: 1.6rem;
+      }
+      
+      .subtitle {
+        font-size: 0.95rem;
+      }
+      
+      .button-grid {
+        gap: 12px;
+      }
+      
+      .btn {
+        padding: 12px 8px;
+        font-size: 0.85rem;
+        min-height: 65px;
+      }
+      
+      .btn i {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .container {
+        padding: 18px 12px;
+        width: 94%;
+      }
+      
+      .logo {
+        width: 140px;
+      }
+      
+      h1 {
+        font-size: 1.4rem;
+      }
+      
+      .subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .button-grid {
+        gap: 10px;
+      }
+      
+      .btn {
+        padding: 10px 6px;
+        font-size: 0.8rem;
+        min-height: 60px;
+      }
+      
+      .btn i {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      body {
+        padding: 5px;
+        min-height: auto;
+      }
+      
+      .container {
+        padding: 15px;
+        max-width: 90%;
+      }
+      
+      .button-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="AMA Foundation" class="logo">
+    <div class="subtitle">تعلم اللغات باحترافية مع مؤسسة AMA - نفتح لك أبواب العالم بلغات متعددة</div>
+
+    <div class="button-grid">
+      <a class="btn maps" href="https://maps.app.goo.gl/oMSr66Gw37mzvZEo9" target="_blank">
+        <i class="fas fa-map-marker-alt"></i> الموقع
+      </a>
+      <a class="btn facebook" href="https://www.facebook.com/contactAMAfoundation" target="_blank">
+        <i class="fab fa-facebook-f"></i> فيسبوك
+      </a>
+      <a class="btn instagram" href="https://www.instagram.com/foundationama/" target="_blank">
+        <i class="fab fa-instagram"></i> إنستغرام
+      </a>
+      <a class="btn tiktok" href="https://www.tiktok.com/@ama.foundation16" target="_blank">
+        <i class="fab fa-tiktok"></i> تيك توك
+      </a>
+      <a class="btn phone" href="#" onclick="showCallOptions()">
+        <i class="fas fa-phone"></i> اتصل بنا
+      </a>
+      <a class="btn whatsapp" href="#" onclick="showWhatsappOptions()">
+        <i class="fab fa-whatsapp"></i> واتساب
+      </a>
+      <a class="btn linkedin" href="https://www.linkedin.com/company/ama-foundation-algeria/" target="_blank">
+        <i class="fab fa-linkedin-in"></i> لينكد إن
+      </a>
+      <a class="btn email" href="mailto:info@amafoundation.com">
+        <i class="fas fa-envelope"></i> البريد
+      </a>
+    </div>
+  </div>
+
+  <!-- Call Options Modal -->
+  <div class="call-options" id="callOptions">
+    <div class="call-options-content">
+      <h3>اختر رقم للاتصال:</h3>
+      <a href="tel:+213667967585" class="call-option-btn">الرقم 1</a>
+      <a href="tel:+213552152893" class="call-option-btn">الرقم 2</a>
+      <button class="close-btn" onclick="hideCallOptions()">رجوع</button>
+    </div>
+  </div>
+
+  <!-- WhatsApp Options Modal -->
+  <div class="whatsapp-options" id="whatsappOptions">
+    <div class="whatsapp-options-content">
+      <h3>اختر رقم للواتساب:</h3>
+      <a href="https://wa.me/+213667967585" class="whatsapp-option-btn" target="_blank">الرقم 1 </a>
+      <a href="https://wa.me/+213552152893" class="whatsapp-option-btn" target="_blank">الرقم 2</a>
+      <button class="close-btn" onclick="hideWhatsappOptions()">رجوع</button>
+    </div>
+  </div>
+
+  <script>
+    function showCallOptions(event) {
+      document.getElementById('callOptions').style.display = 'flex';
+      if (event) event.preventDefault();
+    }
+
+    function hideCallOptions() {
+      document.getElementById('callOptions').style.display = 'none';
+    }
+
+    function showWhatsappOptions(event) {
+      document.getElementById('whatsappOptions').style.display = 'flex';
+      if (event) event.preventDefault();
+    }
+
+    function hideWhatsappOptions() {
+      document.getElementById('whatsappOptions').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
